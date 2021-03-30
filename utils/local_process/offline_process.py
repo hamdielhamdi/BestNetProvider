@@ -1,5 +1,8 @@
 import pandas as pd
-from local_process import ProcessLD
+try : 
+	from local_process import ProcessLD
+except  : 
+	from .local_process import ProcessLD
 import sys
 
 

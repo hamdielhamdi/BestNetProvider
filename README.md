@@ -58,5 +58,7 @@ To run the server in debug mode :
 ```python 
 python run.py  
 ```
+
 access the server thu **[http://localhost/bestprovider/?q=2 rue paul..](http://localhost/bestprovider/?q=2 rue paul..)**.
+
 ---

@@ -50,3 +50,13 @@ To illustrate the logic behind the webserver, those are the mean steps :
 * 2- the workflow process, will requests the **[https://adresse.data.gouv.fr/api](https://adresse.data.gouv.fr/api)** to get the geo location as a tupe (x,y).
 * 3- the workflow will calculate the nearest 3 point with 3 diffrente provider as following : 
 ![https://github.com/hamdielhamdi/BestNetProvider/blob/979febeeafdefe8992175b436f6464663e597398/IMAGE.png](ok)
+
+The distance is calculated base on the **[https://en.wikipedia.org/wiki/Euclidean_distance](https://en.wikipedia.org/wiki/Euclidean_distance)** 
+
+### usage 
+To run the server in debug mode : 
+```python 
+python run.py  
+```
+access the server thu **[http://localhost/bestprovider/?q=2 rue paul..](http://localhost/bestprovider/?q=2 rue paul..)**.
+---

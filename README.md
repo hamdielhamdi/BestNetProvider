@@ -1,3 +1,4 @@
+
 # BestNetProvider
 BestNetProvider is a small API that calculate network coverage based on the address.
 
@@ -22,12 +23,25 @@ cd BestNetProvider
 ```
 pip install -r requirements.txt
 ```
-
-### offline processing: 
+---
+### Offline processing: 
+The offline process use pandas and numpy to read, write, manipulate and process the data as a pandas dataframe.Steps : 
 1- Download the data 
 2- Save the data while downloading 
 3- convert the data to a pandas dataframe
 4- map the provider name and identifier 
 5- save the final dataframe
+To run the offline process, use the following steps : 
+```python
+# access the local process folder under the utils folder
+cd utils/local_process
+# offline process can be started in two ways : 
+#  1- downloads and process data, using the keyword update 
+python offline_process.py  update
+# 2 - use the existing file from the local folder 
+python offline_process.py
+```
+Note, the offline process must be lunched atleast one time, before running the web server.
 
+---
 ### 

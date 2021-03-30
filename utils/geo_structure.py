@@ -23,10 +23,9 @@ class MinDist:
 		# used to get the source file from the relaive path
 		cur_path = os.path.dirname(__file__)					# get dir path
 		self.new_path = cur_path+'\\local_process\\source.csv'  # move to the  relative dir
-
-		print(self.new_path)
 		self.base_url  = url				 					# url to get the coord
-
+		self.nereastpnt = []
+		self.index = 0
 	def geocoord(self, adr):
 		"""convert the string adress to x,y geo location on the map """
 
@@ -53,6 +52,7 @@ class MinDist:
 		return math.sqrt(x)
 
 
+
 	def mindistance(self, df, point) : 
 			"""calculate distance between 2 point and return the min"""
 
@@ -67,6 +67,35 @@ class MinDist:
 			df['distance'] = df['vertical_dist'] + df['horiz_dist']
 			df['final_distance'] = df['distance'].apply(lambda x: self.square_root(x)) # Euclidean distance
 
-			return df[df['final_distance'] == df['final_distance'].min()] # get teh index from df whre distance is min
+			result  = df[df['final_distance'] == df['final_distance'].min()] # get teh index from df whre distance is min
+
+			return result
+
+
+
+	def three_nearest_point(self, df,point):
+		r = self.mindistance(df, point)
+
+		self.nereastpnt.append(r)
+		
+		df  = df[df['final_distance'] != df['final_distance'].min()]
+
+		if len(self.nereastpnt) != 5: 
+			self.three_nearest_point(df,point)
+
+		df_nrst_point = pd.DataFrame()
+
+		for df in self.nereastpnt:
+			df_nrst_point = df_nrst_point.append(df)
+
+		df_nrst_point = df_nrst_point[['Operateur','2G','3G','4G']]
+
+		return df_nrst_point
 
 	
+	def process_output(self, df):
+		output = {}
+		for i in range(df.shape[0]):
+			item = {df['Operateur'].iloc[i] : {'2G': df['2G'].iloc[i], '3G': df['3G'].iloc[i], '4G': df['4G'].iloc[i]} }	
+			output.update(item)
+		return output

@@ -17,7 +17,7 @@ def process_all(update): # main workflow
 	df = pr.read_df()
 
 	df = pr.map_provider(df)					# map operator id with name
-
+	
 	df.to_csv('source.csv')						# save file 
 
 
